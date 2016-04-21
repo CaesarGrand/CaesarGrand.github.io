@@ -94,7 +94,7 @@
 原题链接link
 看了题目描述的前面第一想到是循环，接着说是否可以O(1)，那这就有一股浓浓的规律气息（没错就是这样！）于是我们来非常蠢但是非常有效果的打表方法来观察一下：
 12345678910111213141516171819200 01 12 23 34 45 56 67 78 89 91">
-<meta property="og:updated_time" content="2016-04-21T15:01:07.154Z">
+<meta property="og:updated_time" content="2016-04-21T16:39:28.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode Add Digits">
 <meta name="twitter:description" content="每天都进步一点点！！！
@@ -308,6 +308,11 @@
 <p>结果很明显了嘛，果然是有循环。</p>
 <p><em>O(1)  ac代码：</em></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//[Leetcode]Add Digits</span></span><br><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ( num)</span><br><span class="line">            return num % <span class="number">9</span> ? num % <span class="number">9</span> : <span class="number">9</span>;</span><br><span class="line">        return num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><em>updata</em><br>——————————————————————————————————————</p>
+<p>感觉怎么还是要证明一下啦<br>其实这个玩意叫数根（Digital root）啦<br>度娘链接<a href="http://baike.baidu.com/link?url=DQIHW42BqQSJSWsliOw8ugYIVE5OkXungMmgezO6VTflLNkzqWKnNoFkIqDTSWuj2wqLb-Uyt2uxxuyWhzVwYK" title="link" target="_blank" rel="external">link</a><br>wiki链接<a href="https://en.wikipedia.org/wiki/Digital_root" title="link" target="_blank" rel="external">link</a><br>(还是建议看wiki英文的，中文的什么都没有，别问我怎么知道的，2333)<br>首先对于基数为D（十进制数 D = 10），那么对于数n的结果dr(n)肯定有这样情况：<br>dr(n) = 0 ,                 n = 0;<br>dr(n) = D - 1,                 n != 0 &amp;&amp; n % ( D - 1) = 0;<br>dr(n) = n mod ( D - 1),        n % ( D - 1) != 0;<br>则有<br>dr(n) = 1 + ( n - 1) % 9</p>
+<p>所以结果就是</p>
+<p><em>O(1)  ac代码：</em></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//[Leetcode]Add Digits</span></span><br><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">addDigits</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        return <span class="number">1</span> + (num - <span class="number">1</span>) % <span class="number">9</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
